@@ -1,0 +1,64 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+
+struct Ponkemo {
+    string name;
+    int hp, ep;
+    int basicAttck, medAttck, medAttckCost;
+    int strgAttck, strgAttckCost;
+};
+
+void Status(const Ponkemo &p1, const Ponkemo &p2) {
+    cout << "\n" << p1.name << " - HP: " << p1.hp << " EP: " << p1.ep << endl;
+    cout << p2.name << " - HP: " << p2.hp << " EP: " << p2.ep << "\n" << endl;
+}
+
+void attck(Ponkemo &attcker, Ponkemo &defender, int attckType) {
+    int damage = 0;
+    if (attckType == 1) {
+        damage = attcker.basicAttck;
+        cout << attcker.name << " uses Basic Attck!" << endl;
+    } else if (attckType == 2 && attcker.ep >= attcker.medAttckCost) {
+        damage = attcker.medAttck;
+        attcker.ep -= attcker.medAttckCost;
+        cout << attcker.name << " uses Med Attck!" << endl;
+    } else if (attckType == 3 && attcker.ep >= attcker.strgAttckCost) {
+        damage = attcker.strgAttck;
+        attcker.ep -= attcker.strgAttckCost;
+        cout << attcker.name << " uses Strg Attck!" << endl;
+    } else {
+        cout << attcker.name << " doesn't have enough EP!" << endl;
+        return;
+    }
+    defender.hp -= damage;
+    cout << "Deals " << damage << " damage!" << endl;
+    if (defender.hp <= 0) cout << defender.name << " is defeated!" << endl;
+}
+
+int main() {
+    srand(time(0));
+    cout << "Welcome to Ponkemo game!" << endl;
+
+    Ponkemo ponkemo = {"Ponkemo", 100, 50, 12, 20, 10, 30, 30};  // Mạnh hơn
+    Ponkemo chardriza = {"Chardriza", 100, 50, 8, 15, 10, 25, 30}; // Yếu hơn
+
+    while (ponkemo.hp > 0 && chardriza.hp > 0) {
+        Status(ponkemo, chardriza);
+        cout << "Choose an action:" << endl;
+        cout << "1. Basic Attck (No EP)" << endl;
+        cout << "2. Med Attck (-10 EP)" << endl;
+        cout << "3. Strg Attck (-30 EP)" << endl;
+        cout << "Choice: ";
+        int choice;
+        cin >> choice;
+        attck(ponkemo, chardriza, choice);
+
+        if (chardriza.hp > 0) {
+            int enemyChoice = rand() % 3 + 1;
+            attck(chardriza, ponkemo, enemyChoice);
+        }
+    }
+    return 0;
+}
