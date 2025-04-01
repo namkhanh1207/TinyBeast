@@ -1,1 +1,1 @@
-update with more images and animations
+Update with more images and animations
