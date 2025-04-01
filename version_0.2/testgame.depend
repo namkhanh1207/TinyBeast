@@ -1,0 +1,22 @@
+# depslib dependency file v1.0
+1743477493 source:c:\users\donam\workspace\testgame\main.cpp
+	<SDL.h>
+	<SDL_ttf.h>
+	<SDL_image.h>
+	<iostream>
+	<cstdlib>
+	<ctime>
+	<string>
+	<vector>
+	"Ponkemo.h"
+
+1743477326 c:\users\donam\workspace\testgame\ponkemo.h
+	<SDL.h>
+	<SDL_ttf.h>
+	<string>
+	<vector>
+	<iostream>
+
+1742196851 source:c:\users\donam\workspace\testgame\ponkemo.cpp
+	"Ponkemo.h"
+
