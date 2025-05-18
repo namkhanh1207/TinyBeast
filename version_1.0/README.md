@@ -22,7 +22,7 @@ Big update with these things :
 
 - Status Effects: Burn and Freeze mechanics added with turn-based impact.
 
-- Improved UI:
+- Improved UI: 
 
   + Health bars, battle logs, and animated attacks.
 
